@@ -2,6 +2,7 @@ import fetchTimeSeries from "@/api/fetchTimeSeries";
 import { useQuery } from "@tanstack/react-query";
 import { Inter } from "next/font/google";
 import { useRouter } from "next/router";
+import CurrenciesSelector from "./CurrenciesSelector";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,9 +21,9 @@ const App = () => {
   });
 
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    ></main>
+    <main className={`min-h-screen w-fit ${inter.className}`}>
+      <CurrenciesSelector fromCurrency={String(from)} toCurrency={String(to)} />
+    </main>
   );
 };
 
