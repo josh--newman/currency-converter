@@ -48,9 +48,9 @@ export default function Home({
   // Redirect to default currencies if there are no query params
   useEffect(() => {
     if (
-      !router.query.from ||
-      !router.query.to ||
-      !router.query.start ||
+      !router.query.from &&
+      !router.query.to &&
+      !router.query.start &&
       !router.query.end
     ) {
       router.replace({

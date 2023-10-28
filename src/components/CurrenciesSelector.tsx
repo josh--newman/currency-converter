@@ -1,22 +1,11 @@
+import { currencyOptions } from "@/constants";
+import useCurrencies from "@/hooks/useCurrencies";
 import { useRouter } from "next/router";
 import React, { ChangeEvent } from "react";
 
-const currencyOptions = [
-  { value: "AUD", label: "Australian Dollar", icon: "🇦🇺" },
-  { value: "USD", label: "US Dollar", icon: "🇺🇸" },
-  { value: "EUR", label: "Euro", icon: "🇪🇺" },
-  { value: "GBP", label: "British Pound", icon: "🇬🇧" },
-  { value: "JPY", label: "Japanese Yen", icon: "🇯🇵" },
-  { value: "CAD", label: "Canadian Dollar", icon: "🇨🇦" },
-];
-
-interface Props {
-  fromCurrency: string;
-  toCurrency: string;
-}
-
-const CurrencySelector = ({ fromCurrency, toCurrency }: Props) => {
+const CurrencySelector = () => {
   const router = useRouter();
+  const { from: fromCurrency, to: toCurrency } = useCurrencies();
 
   const handleBaseCurrencyChange = (e: ChangeEvent<HTMLSelectElement>) => {
     router.push(
@@ -56,7 +45,7 @@ const CurrencySelector = ({ fromCurrency, toCurrency }: Props) => {
   };
 
   return (
-    <div className="p-4 flex flex-col sm:flex-row w-screen items-center">
+    <section className="flex flex-col sm:flex-row w-full mb-6 items-center">
       <div className="flex flex-col w-full">
         <label htmlFor="baseCurrency" className="text-sm">
           From
@@ -103,7 +92,7 @@ const CurrencySelector = ({ fromCurrency, toCurrency }: Props) => {
           ))}
         </select>
       </div>
-    </div>
+    </section>
   );
 };
 
