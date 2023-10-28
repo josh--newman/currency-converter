@@ -6,6 +6,7 @@ import {
 import { NextPageContext } from "next";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { format, sub } from "date-fns";
 
 import App from "../components/App";
 import fetchTimeSeries from "../api/fetchTimeSeries";
@@ -57,8 +58,8 @@ export default function Home({
         query: {
           from: "AUD",
           to: "JPY",
-          start: "2020-01-01",
-          end: "2020-02-01",
+          start: format(sub(new Date(), { weeks: 1 }), "yyyy-MM-dd"),
+          end: format(new Date(), "yyyy-MM-dd"),
         },
       });
     }
