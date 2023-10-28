@@ -1,6 +1,7 @@
 import useCurrencies from "@/hooks/useCurrencies";
 import { format, intervalToDuration, sub } from "date-fns";
 import { useRouter } from "next/router";
+import DateRangePicker from "./DateRangePicker";
 
 const DateFilters = () => {
   const router = useRouter();
@@ -58,9 +59,7 @@ const DateFilters = () => {
           6M
         </button>
       </div>
-      <button className="p-2 border rounded border-gray-400 w-12 text-xl">
-        🗓️
-      </button>
+      <DateRangePicker />
     </section>
   );
 };
