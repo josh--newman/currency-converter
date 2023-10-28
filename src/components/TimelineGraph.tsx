@@ -44,15 +44,13 @@ const TimelineGraph = () => {
     })
   );
 
-  console.log({ data });
-
   return (
     <section className="mb-4 h-80">
       <LineGraph
         data={[
           {
             id: `${from} to ${to}`,
-            color: "hsl(325, 70%, 50%)",
+            color: "hsl(0, 70%, 50%)",
             data,
           },
         ]}
