@@ -58,8 +58,7 @@ const CurrencySelector = () => {
         >
           {currencyOptions.map((currency) => (
             <option key={currency.value} value={currency.value}>
-              {currency.icon}{" "}
-              <span className="text-slate-400">{`${currency.value} - ${currency.label}`}</span>
+              {currency.icon} {`${currency.value} - ${currency.label}`}
             </option>
           ))}
         </select>
@@ -86,8 +85,7 @@ const CurrencySelector = () => {
         >
           {currencyOptions.map((currency) => (
             <option key={currency.value} value={currency.value}>
-              {currency.icon}{" "}
-              <span className="text-slate-400">{`${currency.value} - ${currency.label}`}</span>
+              {currency.icon} {`${currency.value} - ${currency.label}`}
             </option>
           ))}
         </select>
