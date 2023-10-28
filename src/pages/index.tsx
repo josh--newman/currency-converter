@@ -1,15 +1,8 @@
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from "@tanstack/react-query";
-import { NextPageContext } from "next";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { format, sub } from "date-fns";
 
 import App from "../components/App";
-import fetchTimeSeries from "../api/fetchTimeSeries";
 
 const validateQueryParams = (query: any) => {
   const { from, to, start, end } = query;
@@ -26,38 +19,7 @@ const validateQueryParams = (query: any) => {
   return true;
 };
 
-export const getServerSideProps = async (context: NextPageContext) => {
-  const queryClient = new QueryClient();
-  const { from, to, start, end } = context.query;
-
-  if (
-    typeof from !== "string" ||
-    typeof to !== "string" ||
-    typeof start !== "string" ||
-    typeof end !== "string"
-  ) {
-    return {
-      props: {
-        dehydratedState: null,
-      },
-    };
-  }
-
-  await queryClient.prefetchQuery({
-    queryKey: ["exchangeRates", { from, to, start, end }],
-    queryFn: fetchTimeSeries({ from, to, startDate: start, endDate: end }),
-  });
-
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-  };
-};
-
-export default function Home({
-  dehydratedState,
-}: Awaited<ReturnType<typeof getServerSideProps>>["props"]) {
+export default function Home() {
   const router = useRouter();
 
   // Redirect to default currencies if there are no query params
@@ -75,9 +37,5 @@ export default function Home({
     }
   }, [router]);
 
-  return (
-    <HydrationBoundary state={dehydratedState}>
-      {!validateQueryParams(router.query) ? <div>Loading...</div> : <App />}
-    </HydrationBoundary>
-  );
+  return !validateQueryParams(router.query) ? <div>Loading...</div> : <App />;
 }
