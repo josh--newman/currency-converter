@@ -38,13 +38,13 @@ export const getServerSideProps = async (context: NextPageContext) => {
   ) {
     return {
       props: {
-        dehydratedState: dehydrate(queryClient),
+        dehydratedState: null,
       },
     };
   }
 
   await queryClient.prefetchQuery({
-    queryKey: ["exchangeRates", { from, to }],
+    queryKey: ["exchangeRates", { from, to, start, end }],
     queryFn: fetchTimeSeries({ from, to, startDate: start, endDate: end }),
   });
 
