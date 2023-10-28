@@ -11,6 +11,21 @@ import { format, sub } from "date-fns";
 import App from "../components/App";
 import fetchTimeSeries from "../api/fetchTimeSeries";
 
+const validateQueryParams = (query: any) => {
+  const { from, to, start, end } = query;
+
+  if (
+    typeof from !== "string" ||
+    typeof to !== "string" ||
+    typeof start !== "string" ||
+    typeof end !== "string"
+  ) {
+    return false;
+  }
+
+  return true;
+};
+
 export const getServerSideProps = async (context: NextPageContext) => {
   const queryClient = new QueryClient();
   const { from, to, start, end } = context.query;
@@ -47,12 +62,7 @@ export default function Home({
 
   // Redirect to default currencies if there are no query params
   useEffect(() => {
-    if (
-      !router.query.from &&
-      !router.query.to &&
-      !router.query.start &&
-      !router.query.end
-    ) {
+    if (!validateQueryParams(router.query)) {
       router.replace({
         pathname: "/",
         query: {
@@ -67,7 +77,7 @@ export default function Home({
 
   return (
     <HydrationBoundary state={dehydratedState}>
-      <App />
+      {!validateQueryParams(router.query) ? <div>Loading...</div> : <App />}
     </HydrationBoundary>
   );
 }
