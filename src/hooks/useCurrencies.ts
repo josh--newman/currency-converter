@@ -9,7 +9,7 @@ const useCurrencies = () => {
   const { from, to, start, end } = router.query;
 
   const query = useQuery({
-    queryKey: ["timeSeries", { from, to }],
+    queryKey: ["timeSeries", { from, to, start, end }],
     queryFn: fetchTimeSeries({
       from: String(from),
       to: String(to),

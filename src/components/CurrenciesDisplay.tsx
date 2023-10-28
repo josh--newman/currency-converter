@@ -34,7 +34,7 @@ const CurrenciesDisplay = () => {
         </h2>
         <div>
           {query.isLoading ? (
-            "..."
+            <span className="text-lg sm:text-2xl">...</span>
           ) : (
             <span
               className={`text-lg sm:text-2xl sm:mx-2 text-${
