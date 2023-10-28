@@ -69,8 +69,8 @@ const CurrencySelector = ({ fromCurrency, toCurrency }: Props) => {
         >
           {currencyOptions.map((currency) => (
             <option key={currency.value} value={currency.value}>
-              {currency.icon}
-              {`${currency.value} - ${currency.label}`}
+              {currency.icon}{" "}
+              <span className="text-slate-400">{`${currency.value} - ${currency.label}`}</span>
             </option>
           ))}
         </select>
@@ -97,8 +97,8 @@ const CurrencySelector = ({ fromCurrency, toCurrency }: Props) => {
         >
           {currencyOptions.map((currency) => (
             <option key={currency.value} value={currency.value}>
-              {currency.icon}
-              {`${currency.value} - ${currency.label}`}
+              {currency.icon}{" "}
+              <span className="text-slate-400">{`${currency.value} - ${currency.label}`}</span>
             </option>
           ))}
         </select>
