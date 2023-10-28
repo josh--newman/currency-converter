@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import CurrenciesSelector from "./CurrenciesSelector";
 import CurrenciesDisplay from "./CurrenciesDisplay";
 import DateFilters from "./DateFilters";
+import TimelineGraph from "./TimelineGraph";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,6 +12,7 @@ const App = () => {
       <CurrenciesSelector />
       <CurrenciesDisplay />
       <DateFilters />
+      <TimelineGraph />
     </main>
   );
 };
