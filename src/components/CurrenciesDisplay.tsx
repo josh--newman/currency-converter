@@ -1,6 +1,7 @@
 import { currencyOptions } from "@/constants";
 import useCurrencies from "@/hooks/useCurrencies";
 import { calculatePercentageChange } from "@/utils";
+import { formatDistance } from "date-fns";
 
 const CurrenciesDisplay = () => {
   const {
@@ -44,7 +45,9 @@ const CurrenciesDisplay = () => {
             </span>
           )}
 
-          <span className="text-xs">{"(1w)"}</span>
+          <span className="text-xs">
+            ({formatDistance(new Date(start), new Date(end))})
+          </span>
         </div>
       </div>
       <span className="text-xs">
