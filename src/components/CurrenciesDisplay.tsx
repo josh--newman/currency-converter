@@ -1,5 +1,6 @@
 import { currencyOptions } from "@/constants";
 import useCurrencies from "@/hooks/useCurrencies";
+import { calculatePercentageChange } from "@/utils";
 
 const CurrenciesDisplay = () => {
   const {
@@ -15,14 +16,7 @@ const CurrenciesDisplay = () => {
   const values = Object.values(query.data?.quotes || {}).map(
     (quote) => quote[code]
   );
-  const latestValue = values[values.length - 1];
-  const firstValue = values[0];
-  const increase = latestValue - firstValue;
-  const percentageChange = (increase / firstValue) * 100;
-  const displayNumber =
-    Math[percentageChange * 100 < 0 ? "ceil" : "floor"](
-      percentageChange * 100
-    ) / 100;
+  const percentageChange = calculatePercentageChange(values);
 
   const fromDisplayName = currencyOptions.find(
     (c) => c.value === fromCurrency
@@ -46,7 +40,7 @@ const CurrenciesDisplay = () => {
                 percentageChange < 0 ? "red" : "green"
               }-600`}
             >
-              {displayNumber}%
+              {percentageChange}%
             </span>
           )}
 
