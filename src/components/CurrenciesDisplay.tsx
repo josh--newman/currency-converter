@@ -32,24 +32,26 @@ const CurrenciesDisplay = () => {
   )?.label;
 
   return (
-    <section className="mb-6 flex flex-col">
-      <h2 className="font-bold text-2xl">
-        {fromCurrency} to {toCurrency} Chart
-      </h2>
-      <div>
-        {query.isLoading ? (
-          "..."
-        ) : (
-          <span
-            className={`text-lg text-${
-              percentageChange < 0 ? "red" : "green"
-            }-600`}
-          >
-            {displayNumber}%
-          </span>
-        )}
+    <section className="mb-6">
+      <div className="flex flex-col sm:flex-row">
+        <h2 className="font-bold text-2xl">
+          {fromCurrency} to {toCurrency} Chart
+        </h2>
+        <div>
+          {query.isLoading ? (
+            "..."
+          ) : (
+            <span
+              className={`text-lg sm:text-2xl sm:mx-2 text-${
+                percentageChange < 0 ? "red" : "green"
+              }-600`}
+            >
+              {displayNumber}%
+            </span>
+          )}
 
-        <span className="text-xs">{"(1w)"}</span>
+          <span className="text-xs">{"(1w)"}</span>
+        </div>
       </div>
       <span className="text-xs">
         {fromDisplayName} to {toDisplayName}
